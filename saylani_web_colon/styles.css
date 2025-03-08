@@ -1,0 +1,54 @@
+/* Active state for navigation items */
+.active {
+    color: blue;
+}
+
+/* Hover effect for navigation items */
+nav a {
+    position: relative;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -5px; /* Adjust as needed */
+    width: 0;
+    height: 1.5pt;
+    background: green;
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Cursor animation */
+.cursor {
+    display: inline-block;
+    width: 10px;
+    background-color: black;
+    animation: blink 0.7s step-end infinite;
+}
+@keyframes blink {
+    50% {
+        background-color: transparent;
+    }
+}
+
+/* Department text color */
+#department {
+    color: #0066b3; /* Apply the specified color */
+}
+
+/* Button styles */
+button {
+    background-color: #0066b3; /* Set background color */
+    color: white; /* Set text color */
+}
+
+button:hover {
+    background-color: #8dc63f; /* Set hover background color */
+    color: #0066b3; /* Set hover text color */
+}

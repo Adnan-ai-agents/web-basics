@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saylani Welfare</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+<script src="script.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    fetch('hero-slider.html')
+      .then(response => response.text())
+      .then(html => document.getElementById('hero-section').innerHTML = html);
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+      const counters = document.querySelectorAll(".counter");
+
+      const animateCount = (counter) => {
+          const target = +counter.getAttribute("data-target");
+          let count = 0;
+          const speed = target / 100; // Adjust speed (higher number = slower)
+          
+          const updateCounter = () => {
+              count += speed;
+              if (count < target) {
+                  counter.textContent = Math.ceil(count);
+                  requestAnimationFrame(updateCounter);
+              } else {
+                  counter.textContent = target;
+              }
+          };
+
+          updateCounter();
+      };
+
+      // Observer to detect when section enters/exits view
+      const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                  entry.target.classList.add("in-view"); // Add active class
+                  counters.forEach(counter => {
+                      counter.textContent = "0"; // Reset before animation
+                      animateCount(counter);
+                  });
+              }
+          });
+      }, { threshold: 0.5 });
+
+      counters.forEach(counter => observer.observe(counter));
+  });
+</script>
+
+<script>
+  const testimonials = [
+  {
+    img: "./Arshad Wali Muhammad.webp",
+    name: "Arshad Wali Muhammad",
+    role: "(Group Director, Gerry's Group)", // Fixed the single quote
+    text: "Saylani Welfare Trust is a name that needs no introduction today. The journey this team embarked upon was made possible owing to their zeal, enthusiasm & commitment to the society and by the grace of Allah (SWT), it has become a name that we need and not just the one we want. I wish Saylani’s team all the success and blessing that they deserve for the future. May God bless Saylani and ensure prosperity and happiness for our people, Ameen!"
+  },
+    {
+      img: "./asif ismail.webp",
+      name: "Asif Ismail",
+      role: "(C.O.O. & Director, Premier Cables Pvt. Ltd)",
+      text: "When we talk about serving humanity, no second thought occurs other than Saylani Welfare Trust. Saylani is doing a tremendous job in terms of everything they do for a troubled humanity. From offering food to the hungry to arranging jobs for jobless people, arranging marriages and dowry for orphaned girls, offering free medical facilities, and much more. We sincerely wish them success in their future endeavors and in raising their standards of serving mankind in a better and more professional way. is doing a tremendous job in terms of everything they do for troubled humanity, from offering food to the hungry to arranging jobs for jobless people."
+    }
+  ];
+
+  let currentIndex = 0;
+
+  function updateTestimonial(index) {
+    document.getElementById("testimonial-img").src = testimonials[index].img;
+    document.getElementById("testimonial-name").textContent = testimonials[index].name;
+    document.getElementById("testimonial-role").textContent = testimonials[index].role;
+    document.getElementById("testimonial-text").textContent = testimonials[index].text;
+  }
+
+  function prevTestimonial() {
+    currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
+    updateTestimonial(currentIndex);
+  }
+
+  function nextTestimonial() {
+    currentIndex = (currentIndex + 1) % testimonials.length;
+    updateTestimonial(currentIndex);
+  }
+</script>
+
+
+<body class="bg-white ">
+
+  <header class="shadow text-gray-600 body-font">
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+      <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+        <img class="h-13 w-60 " src="/saylani logo.png" alt="Saylani">
+      </a>
+      <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center" onclick="setActive(event)">
+        <a class="mr-5 hover:text-gray-900">Home</a>
+        <a class="mr-5 hover:text-gray-900">About</a>
+        <a class="mr-5 hover:text-gray-900">Services</a>
+        <a class="mr-5 hover:text-gray-900">Media</a>
+        <a class="mr-5 hover:text-gray-900">Contact Us</a>
+        <a class="mr-5 hover:text-gray-900">Bank Details</a>
+
+        <button class="ml-4 inline-flex text-white border-0 py-2 px-6 focus:outline-none rounded text-lg"
+          style="background-color: #0066b3; transition: background-color 0.3s ease;"
+          onmouseover="this.style.backgroundColor='#8dc63f'" onmouseout="this.style.backgroundColor='#0066b3'">
+
+          Other Donations
+        </button>
+
+        <button class="ml-4 inline-flex text-white border-0 py-2 px-6 focus:outline-none rounded text-lg"
+          style="background-color: #0066b3; transition: background-color 0.3s ease;"
+          onmouseover="this.style.backgroundColor='#8dc63f'" onmouseout="this.style.backgroundColor='#0066b3'">
+          DONATE NOW
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container mx-auto p-4">
+    <section class="text-gray-600 body-font">
+      <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
+        <div
+          class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
+          <h1 class="title-font sm:text-4xl text-3xl mb-4 font-bold text-gray-900">
+            Welcome to the <span style="color: #8dc63f;">Saylani Welfare</span> <br>
+            Non-Governmental Organization in Pakistan<br>
+            </h1>
+            <h2 class="sm:text-4xl  mb-4 font-bold text-gray-900">
+              <br>The largest NGO offering free
+              <span id="department" class="font-bold"></span><span class="cursor"></span>
+              <br class="hidden lg:inline-block">
+              <br>
+
+            </h2>
+            <p class="mb-8 leading-relaxed">Saylani Welfare is on the ground and already working with local communities
+              to assess how best to support underprivileged families in more than 63 areas of day to day lives.</p>
+            <div class="flex justify-center">
+              <button class="ml-4 inline-flex text-white border-0 py-2 px-6 focus:outline-none rounded text-lg"
+                style="background-color: #0066b3; transition: background-color 0.3s ease;"
+                onmouseover="this.style.backgroundColor='#8dc63f'" onmouseout="this.style.backgroundColor='#0066b3'">
+                Explorer More
+              </button>
+
+
+            </div>
+        </div>
+        <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
+          <img class="object-cover object-center rounded" src="./Saylani Welfare International Trust.jpeg" alt="Qadri Image">
+        </div>
+        
+      </div>
+    </section>
+    <section class="container mx-auto p-4 w-full">
+      <div style="background-color: #8ec63f41" class=" p-4 md:p-6 rounded-lg  w-full ">
+        <div class="flex flex-col md:flex-row items-center gap-3">
+            
+            <!-- Donation Input Section -->
+            <div class="flex items-center bg-gray-800 text-white rounded-lg overflow-hidden w-full md:w-1/3">
+                <span class="px-3 py-2 bg-gray-700">General</span>
+                <input type="number" placeholder="0" class="w-full p-2 text-gray-900 focus:outline-none">
+                <span class="px-3 py-2 bg-gray-700">Rs.</span>
+            </div>
+    
+            <!-- Donation Categories -->
+            <div class="flex flex-wrap justify-center md:justify-start gap-2 flex-1">
+                <button class="bg-white text-gray-900 px-4 py-2 rounded-lg shadow">Blood Bank / Thalassemia Treatment</button>
+                <button class="bg-white text-gray-900 px-4 py-2 rounded-lg shadow">Family Kifalat</button>
+                <button class="bg-white text-gray-900 px-4 py-2 rounded-lg shadow">Medical</button>
+                <button class="bg-white text-gray-900 px-4 py-2 rounded-lg shadow">Food</button>
+            </div>
+    
+            <!-- Quick Donate Button -->
+            <button class="bg-green-500 text-white px-6 py-2 rounded-lg shadow hover:bg-green-600 transition">
+                Quick Donate
+            </button>
+    
+        </div>
+    </div>
+    </section>
+    <section>
+
+      <div id="hero-section"></div>
+    </section>
+    <section class="text-center py-10">
+      <h2 class="text-3xl font-semibold mb-6">What We Are Doing</h2>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 px-6 w-full mx-auto">
+          <!-- Card 1 -->
+          <a href="#" class="group block bg-green-100 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
+              <img src="./walfare.webp" alt="Welfare" class="mx-auto mb-3 h-16">
+              <p class="text-lg font-medium text-gray-800">Welfare</p>
+          </a>
+          
+          <!-- Card 2 -->
+          <a href="#" class="group block bg-green-100 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
+              <img src="./medical.webp" alt="Medical" class="mx-auto mb-3 h-16">
+              <p class="text-lg font-medium text-gray-800">Medical</p>
+          </a>
+          
+          <!-- Card 3 -->
+          <a href="#" class="group block bg-green-100 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
+              <img src="./sadqaonline.webp" alt="Online Sadqah" class="mx-auto mb-3 h-16">
+              <p class="text-lg font-medium text-gray-800">Online Sadqah</p>
+          </a>
+          
+          <!-- Card 4 -->
+          <a href="#" class="group block bg-green-100 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
+              <img src="./cleanwater.webp" alt="Clean Water" class="mx-auto mb-3 h-16">
+              <p class="text-lg font-medium text-gray-800">Clean Water</p>
+          </a>
+          
+          <!-- Card 5 -->
+          <a href="#" class="group block bg-green-100 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
+              <img src="./education.webp" alt="Education" class="mx-auto mb-3 h-16">
+              <p class="text-lg font-medium text-gray-800">Education</p>
+          </a>
+          
+          <!-- Card 6 -->
+          <a href="#" class="group block bg-green-100 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
+              <img src="./food.webp" alt="Food" class="mx-auto mb-3 h-16">
+              <p class="text-lg font-medium text-gray-800">Food</p>
+          </a>
+      </div>
+  </section>
+  <section class="py-10 px-6 ">
+    <div class="max-w-8xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Card 1 -->
+            <div class="relative rounded-xl overflow-hidden shadow-lg">
+                <img src="./gaza.jpg" alt="Support Gaza's Families" class="w-full h-64 object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-between p-6">
+                    <h3 class="text-white text-xl font-semibold">Support Gaza's Families</h3>
+                    <a href="#" class="bg-green-500 hover:bg-green-600 text-white text-center py-3 rounded-lg">Donate</a>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="relative rounded-xl overflow-hidden shadow-lg">
+                <img src="./sehri.jpg" alt="Sehri & Iftari" class="w-full h-64 object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-between p-6">
+                    <h3 class="text-white text-xl font-semibold">Sehri & Iftari</h3>
+                    <a href="#" class="bg-green-500 hover:bg-green-600 text-white text-center py-3 rounded-lg">Donate</a>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="relative rounded-xl overflow-hidden shadow-lg">
+                <img src="./zakat.jpeg" alt="Zakat" class="w-full h-64 object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-between p-6">
+                    <h3 class="text-white text-xl font-semibold">Zakat</h3>
+                    <a href="#" class="bg-green-500 hover:bg-green-600 text-white text-center py-3 rounded-lg">Donate</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="py-10 px-6 ">
+  <div class="max-w-8xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Left Side (Image + Text) -->
+      <div class="relative">
+          <img src="./foodfeeding.jpeg" alt="Feeding Program" class="w-full h-[350px] object-cover rounded-lg shadow-lg">
+          <div class="absolute top-0 left-0 bg-green-500 text-white p-6 w-[60%] rounded-tl-lg rounded-br-lg">
+              <p class="text-lg font-semibold">Saylani serve almost<br> 300,000 underprivileged<br> on a daily basis</p>
+          </div>
+      </div>
+
+<!-- Right Side (Other Projects) -->
+<div>
+  <h2 class="text-2xl font-bold mb-6">Other Projects</h2>
+  <div class="space-y-6">
+      <!-- Project 1 -->
+      <div class="flex items-center space-x-4">
+          <img src="./Hepatitis.webp" alt="Hepatitis" class="w-16 h-16 rounded-lg bg-gray-200 p-2">
+          <div>
+              <h3 class="text-blue-600 font-semibold">Hepatitis</h3>
+              <p class="text-gray-700">Saylani Welfare has set up a clinic for the best treatment of hepatitis patients.</p>
+          </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="flex items-center space-x-4">
+          <img src="./Housing Society.webp" alt="Housing Society" class="w-16 h-16 rounded-lg bg-gray-200 p-2">
+          <div>
+              <h3 class="text-blue-600 font-semibold">Housing Society</h3>
+              <p class="text-gray-700">Providing home facilities for homeless people with thousands of houses built.</p>
+          </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="flex items-center space-x-4">
+          <img src="./IT Literacy.webp" alt="IT Literacy" class="w-16 h-16 rounded-lg bg-gray-200 p-2">
+          <div>
+              <h3 class="text-blue-600 font-semibold">IT Literacy</h3>
+              <p class="text-gray-700">Developing over 1 million software developers to boost Pakistan’s economy.</p>
+          </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="flex items-center space-x-4">
+          <img src="./Tharparkar.webp" alt="Tharparkar" class="w-16 h-16 rounded-lg bg-gray-200 p-2">
+          <div>
+              <h3 class="text-blue-600 font-semibold">Tharparkar</h3>
+              <p class="text-gray-700">Setting up schools, wells, and technology centers for underprivileged children.</p>
+          </div>
+      </div>
+  </div>
+</div>
+
+          </div>
+      </div>
+  </div>
+</section>
+
+<section id="statsSection" class="py-12 bg-blue-600 relative">
+  <!-- Background wave effect -->
+  <div class="absolute inset-0">
+      <img src="./waves.jpg" alt="Wave Background" class="w-full h-full object-cover opacity-50">
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
+          <!-- Food -->
+          <div class="flex flex-col items-center">
+              <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg">
+                  <img src="./foodround.png" alt="Food" class="w-12 h-12">
+              </div>
+              <p class="text-2xl font-bold mt-4 counter" data-target="300000">0</p>
+              <p class="text-lg">Food <br> (Daily)</p>
+          </div>
+
+          <!-- Family Adoption -->
+          <div class="flex flex-col items-center">
+              <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg">
+                  <img src="./family.png" alt="Family Adoption" class="w-12 h-12">
+              </div>
+              <p class="text-2xl font-bold mt-4 counter" data-target="20000">0</p>
+              <p class="text-lg">Family Adoption <br> (Monthly)</p>
+          </div>
+
+          <!-- Education -->
+          <div class="flex flex-col items-center">
+              <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg">
+                  <img src="./edumon.png" alt="Education" class="w-12 h-12">
+              </div>
+              <p class="text-2xl font-bold mt-4 counter" data-target="25000">0</p>
+              <p class="text-lg">Education <br> (Monthly)</p>
+          </div>
+
+          <!-- Medical -->
+          <div class="flex flex-col items-center">
+              <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg">
+                  <img src="./medmon.png" alt="Medical" class="w-12 h-12">
+              </div>
+              <p class="text-2xl font-bold mt-4 counter" data-target="125000">0</p>
+              <p class="text-lg">Medical <br> (Monthly)</p>
+          </div>
+      </div>
+  </div>
+</section>
+
+<section class=" py-12">
+  <div class="container w-full px-4">
+    <h2 class="text-green-500 text-center uppercase font-semibold">Our Testimonials</h2>
+    <h3 class="text-2xl font-bold text-center mb-6">What They Say?</h3>
+
+    <div class="relative max-w-8xl bg-gray-200 mx-auto  p-6  rounded-lg">
+      <div class="testimonial">
+        <div class="flex flex-col items-center text-center">
+          <img
+            id="testimonial-img"
+            class="w-20 h-20 rounded-full border-4 border-gray-300"
+            src="./Arshad Wali Muhammad.webp"
+            alt="Testimonial"
+          />
+          <h4 id="testimonial-name" class="text-xl font-semibold mt-3 text-blue-600">Arshad Wali Muhammad</h4>
+          <p id="testimonial-role" class="text-gray-500 text-sm">(Group Director, Gerry’s Group)</p>
+          <p id="testimonial-text" class="text-gray-700 mt-4">
+            Saylani Welfare Trust is a name that needs no introduction today. The journey this team embarked upon was made possible owing to their zeal, enthusiasm & commitment to the society and by the grace of Allah (SWT), it has become a name that we need and not just the one we want. I wish Saylani’s team all the success and blessing that they deserve for future, May God bless Saylani and ensure prosperity and happiness for our people, Ameen!
+
+          </p>
+        </div>
+      </div>
+      <!-- Navigation buttons -->
+      <div class="flex justify-center mt-4 space-x-4">
+        <button onclick="prevTestimonial()" class="p-2 bg-gray-200 rounded-full hover:bg-gray-300">⬅</button>
+        <button onclick="nextTestimonial()" class="p-2 bg-green-500 text-white rounded-full hover:bg-green-600">➡</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+<section class="py-12">
+  <div class="container mx-auto px-4">
+    <h2 class="text-center text-gray-800 text-xl font-semibold uppercase">Media Updates</h2>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+      <!-- Card 1 -->
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <div class="relative">
+          <img src="./rozgar.jpg" alt="Media 1" class="w-full h-48 object-cover">
+          <button class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+            <span class="text-white text-3xl">▶</span>
+          </button>
+          <span class="absolute top-2 right-2 bg-blue-600 text-white px-3 py-1 text-xs font-semibold rounded">
+            Fri Feb 28 2025
+          </span>
+        </div>
+        <div class="p-4">
+          <h3 class="font-semibold text-gray-900">Saylani Changed My Life – Grateful for a New Beginning | Saylani Rozgar Scheme 2025</h3>
+          <p class="text-sm text-gray-500 mt-1">#Charity #Organisation</p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <div class="relative">
+          <img src="./wedding.jpg" alt="Media 2" class="w-full h-48 object-cover">
+          <button class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+            <span class="text-white text-3xl">▶</span>
+          </button>
+          <span class="absolute top-2 right-2 bg-blue-600 text-white px-3 py-1 text-xs font-semibold rounded">
+            Fri Feb 28 2025
+          </span>
+        </div>
+        <div class="p-4">
+          <h3 class="font-semibold text-gray-900">Daughters’ Dignity, Our Responsibility | Saylani’s Silent Support for Weddings</h3>
+          <p class="text-sm text-gray-500 mt-1">#Charity #Organisation</p>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <div class="relative">
+          <img src="./donate2.jpg" alt="Media 3" class="w-full h-48 object-cover">
+          <button class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+            <span class="text-white text-3xl">▶</span>
+          </button>
+          <span class="absolute top-2 right-2 bg-blue-600 text-white px-3 py-1 text-xs font-semibold rounded">
+            Fri Feb 28 2025
+          </span>
+        </div>
+        <div class="p-4">
+          <h3 class="font-semibold text-gray-900">Everyone Needs Saylani, But Saylani Needs You | Donate to Saylani Welfare Trust</h3>
+          <p class="text-sm text-gray-500 mt-1">#Charity</p>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <div class="relative">
+          <img src="./old home.jpeg" alt="Media 4" class="w-full h-48 object-cover">
+          <button class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+            <span class="text-white text-3xl">▶</span>
+          </button>
+          <span class="absolute top-2 right-2 bg-blue-600 text-white px-3 py-1 text-xs font-semibold rounded">
+            Fri Feb 28 2025
+          </span>
+        </div>
+        <div class="p-4">
+          <h3 class="font-semibold text-gray-900">Saylani Old Age Home | Kisi Ki Duao Ka Hissa Bany | Donate to Saylani</h3>
+          <p class="text-sm text-gray-500 mt-1">#Charity</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-12 ">
+  <div class="container mx-auto px-4">
+    <h2 class="text-center text-gray-800 text-2xl font-semibold mb-6">News</h2>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- News Card 1 -->
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <img src="./Javed Alam.jpg" alt="News 1" class="w-full h-48 object-cover">
+        <div class="p-4">
+          <span class="inline-block bg-green-500 text-white px-3 py-1 text-xs font-semibold rounded">
+            Fri Feb 07 2025
+          </span>
+          <h3 class="mt-2 font-semibold text-gray-900">Javed Alam Odho, Additional IG Karachi, at Saylani...</h3>
+          <button class="mt-3 text-gray-700 border rounded-lg w-20 p-2 hover:bg-gray-300">
+            ➜
+          </button>
+        </div>
+      </div>
+
+      <!-- News Card 2 -->
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <img src="./Saylani Mega IT Exam.jpg" alt="News 2" class="w-full h-48 object-cover">
+        <div class="p-4">
+          <span class="inline-block bg-green-500 text-white px-3 py-1 text-xs font-semibold rounded">
+            Sun Feb 02 2025
+          </span>
+          <h3 class="mt-2 font-semibold text-gray-900">Saylani Mega IT Exam 2025—A Glimpse of the Future!</h3>
+          <button class="mt-3 text-gray-700 border rounded-lg w-20 p-2 hover:bg-gray-300">
+            ➜
+          </button>
+        </div>
+      </div>
+
+      <!-- News Card 3 -->
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <img src="./Pakistan's Ambassador.jpg" alt="News 3" class="w-full h-48 object-cover">
+        <div class="p-4">
+          <span class="inline-block bg-green-500 text-white px-3 py-1 text-xs font-semibold rounded">
+            Mon Jan 27 2025
+          </span>
+          <h3 class="mt-2 font-semibold text-gray-900">Ahmed Farooq, Pakistan's Ambassador to Saudi Arabia...</h3>
+          <button class="mt-3 text-gray-700 border rounded-lg w-20 p-2 hover:bg-gray-300">
+            ➜
+          </button>
+        </div>
+      </div>
+
+      <!-- News Card 4 -->
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <img src="./Coding Night.jpg" alt="News 4" class="w-full h-48 object-cover">
+        <div class="p-4">
+          <span class="inline-block bg-green-500 text-white px-3 py-1 text-xs font-semibold rounded">
+            Sun Jan 26 2025
+          </span>
+          <h3 class="mt-2 font-semibold text-gray-900">Saylani Coding Night – Moments of Innovation and Progress...</h3>
+          <button class="mt-3 text-gray-700 border rounded-lg w-20 p-2 hover:bg-gray-300">
+            ➜
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-blue-600 py-12">
+  <div class="container mx-auto px-4 text-center">
+    <h2 class="text-white text-2xl font-bold mb-4">Saylani Guide</h2>
+    
+    <form action="https://formsubmit.co/26adnanansari@gmail.com" method="POST" class="max-w-lg mx-auto">
+      <!-- Hide Captcha & Redirect (Optional) -->
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
+
+      <!-- Email Input -->
+      <input 
+        type="email" 
+        name="email" 
+        placeholder="Enter E-Mail Address" 
+        class="w-full p-3 rounded-md border border-gray-300 focus:outline-none"
+        required
+      />
+
+      <!-- Submit Button -->
+      <button 
+        type="submit"
+        class="w-full mt-4 p-3 bg-white text-black font-bold rounded-md hover:bg-gray-200"
+      >
+        SUBSCRIBE
+      </button>
+    </form>
+  </div>
+</section>
+
+
+
+
+
+  
+  </main>
+
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="container mx-auto px-6 lg:px-12">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        
+        <!-- Logo & Social Icons -->
+        <div>
+          <img src="./saylani logo.png" alt="Saylani Logo" class="w-80 mb-4">
+          <div class="flex space-x-3">
+            <a href="#" class="bg-blue-600 p-2 rounded"><img src="./facebook.png" alt="Facebook" class="w-12"></a>
+            <a href="#" class="bg-black p-2 rounded"><img src="./x.png" alt="Twitter/X" class="w-12"></a>
+            <a href="#" class="bg-red-600 p-2 rounded"><img src="./youtube.png" alt="YouTube" class="w-12"></a>
+            <a href="#" class="bg-green-600 p-2 rounded"><img src="./whats.svg" alt="WhatsApp" class="w-12"></a>
+          </div>
+        </div>
+  
+        <!-- About Section -->
+        <div>
+          <h3 class="font-bold text-lg mb-3">About</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-gray-400">Introduction</a></li>
+            <li><a href="#" class="hover:text-gray-400">Chairman Message</a></li>
+            <li><a href="#" class="hover:text-gray-400">Annual Report</a></li>
+            <li><a href="#" class="hover:text-gray-400">Bank Details</a></li>
+          </ul>
+        </div>
+  
+        <!-- Explore Section -->
+        <div>
+          <h3 class="font-bold text-lg mb-3">Explore</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-gray-400">News</a></li>
+            <li><a href="#" class="hover:text-gray-400">Media</a></li>
+            <li><a href="#" class="hover:text-gray-400">Contact</a></li>
+            <li><a href="#" class="hover:text-gray-400">Donations</a></li>
+          </ul>
+        </div>
+  
+        <!-- Contact Section -->
+        <div>
+          <h3 class="font-bold text-lg mb-3">Contact</h3>
+          <p>A-25, Bahadurabad Chowrangi Karachi, Pakistan</p>
+          <p>UAN: 111-729-526 (+0092-213) 4130786-90</p>
+          <p>Cell: 92-311-1729526</p>
+          <p>USA: +1 (716) 941 7792</p>
+          <p>UK: (+44) 115 970 6256</p>
+          <p class="flex items-center mt-2">For Istikhara Contact <img src="./whatsapp.svg" class="w-4 ml-2"></p>
+        </div>
+      </div>
+  
+      <!-- Footer Bottom -->
+      <div class="border-t border-gray-700 mt-8 pt-6 text-center text-sm">
+        <p>IP address data powered by ZamZam</p>
+        <p>Copyright © 2025 by Saylani Welfare Int Trust</p>
+      </div>
+    </div>
+  </footer>
+  
+
+
+
+</body>
+
+</html>
